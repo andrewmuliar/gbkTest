@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiDomen:'https://test-api.ci.gbksoft.net/rest'
 };
