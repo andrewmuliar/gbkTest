@@ -1,7 +1,8 @@
 import { API_ENDPOINS } from './../_config/endpoints';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpService } from './http.service';
+import { HttpService, RestResult } from './http.service';
+import { IProfile } from '../_interfaces/profile.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +11,19 @@ export class ProfileService {
 
   constructor(private http:HttpService) { }
 
-  getProfile():Observable<any>{
-    return this.http.GET(API_ENDPOINS.GET_CURRENT_USER);
+  getProfile():Observable<RestResult<IProfile>>{
+    return this.http.GET<IProfile>(API_ENDPOINS.GET_CURRENT_USER);
   }
 
-  getProfileByUserId(user_id:number){
-    return this.http.GET(API_ENDPOINS.GET_USER_BY_ID + user_id);
+  getProfileByUserId(user_id:number):Observable<RestResult<IProfile>>{
+    return this.http.GET<IProfile>(API_ENDPOINS.GET_USER_BY_ID + user_id);
   }
 
   updateProfile(data){
-    return this.http.PUT(API_ENDPOINS.CURRENT_USER, data);
+    return this.http.PUT(API_ENDPOINS.UPDATE_USER, data);
   }
 
-  getCurrentUser(){
-    return this.http.GET(API_ENDPOINS.GET_CURRENT_USER)
+  getCurrentUser():Observable<RestResult<IProfile>>{
+    return this.http.GET<IProfile>(API_ENDPOINS.GET_CURRENT_USER);
   }
 }

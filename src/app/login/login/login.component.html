@@ -1,1 +1,33 @@
-<p>login works!</p>
+<section>
+   <div>
+       Login
+   </div>
+   <form [formGroup]="formGroup" (ngSubmit) = "login()">
+       <div>
+           <input formControlName = "email" type="text">
+        </div>
+        <!-- <div *ngIf="formGroup.controls['email'].invalid && myForm.controls['email'].touched"></div> -->
+       <div>
+           <input formControlName = "password" type="password">
+        </div>
+       <div>
+    </div>
+    <button type = "submit">Login here</button>
+    </form>
+
+   <div>
+       Register
+   </div>
+   <form [formGroup]="formGroup" (ngSubmit) = "register()">
+        <div>
+            <input formControlName = "email" type="text">
+        </div>
+        <div>
+            <input formControlName = "password" type="password">
+         </div>
+         <button type="submit" >Register</button>
+    </form>
+    <div>
+        {{ errorText }}
+    </div>
+</section>

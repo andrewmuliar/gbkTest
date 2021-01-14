@@ -1,23 +1,31 @@
-import { API_ENDPOINS } from './../_config/endpoints';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
+
+export interface RestResult<T>{
+  status:string;
+  messages:string;
+  code:number
+  result:T
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor(public http:HttpService) { }
+  constructor(public http:HttpClient) { }
 
-  public POST(url:string, body:any):Observable<any>{
-    return this.http.POST(API_ENDPOINS + url, {body});
+  public POST<T>(url:string, body:any):Observable<RestResult<T>>{
+    return this.http.post<RestResult<T>>(environment.apiDomen + url, body, {})
   }
 
-  public GET(url:string):Observable<any>{
-    return this.http.GET(API_ENDPOINS + url);
+  public GET<T>(url:string):Observable<RestResult<T>>{
+    return this.http.get<RestResult<T>>(environment.apiDomen + url, {})
   }
 
-  public PUT(url:string, data:any){
-    return this.http.PUT(API_ENDPOINS + url, {data});
+  public PUT<T>(url:string, data:any):Observable<RestResult<T>>{
+    return this.http.put<RestResult<T>>(environment.apiDomen + url, data, {})
   }
 }
