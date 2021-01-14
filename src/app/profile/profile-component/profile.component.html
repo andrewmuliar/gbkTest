@@ -1,5 +1,7 @@
 <section>
     PROFILE
     <button (click)="logout()">Log out</button>
-    <agm-map style = "height:500px; width:350px;" [latitude]="51.678418" [longitude]="7.809007"></agm-map>
+    <agm-map [zoom] = "10" *ngIf = "usersMarkers && usersMarkers.length > 0" style = "height:750px; width:1550px;" [latitude]="usersMarkers[0].latitude" [longitude]="usersMarkers[0].longitude">
+        <agm-marker *ngFor = "let point of usersMarkers" [latitude]="point.latitude" [longitude]="point.longitude"></agm-marker>
+    </agm-map>
 </section>

@@ -16,7 +16,7 @@ export class ProfileService {
   }
 
   getProfileByUserId(user_id:number):Observable<RestResult<IProfile>>{
-    return this.http.GET<IProfile>(API_ENDPOINS.GET_USER_BY_ID + user_id);
+    return this.http.GET<IProfile>(API_ENDPOINS.GET_USER + user_id);
   }
 
   updateProfile(data){
